@@ -1,0 +1,319 @@
+" ---------------------------------------------------------------------------------
+"
+" Plugins
+"
+" --------------------------------------------------------------------------------
+
+" vim-plug を使ってプラグインをインストールします。
+" vim-plug のインストールについては下記 URL を参照してください。
+" https://github.com/junegunn/vim-plug
+call plug#begin()
+
+" カラーテーマです。
+Plug 'tomasr/molokai'
+
+" Markdown の編集に関する機能を提供します。
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+
+" ファイラーです。
+Plug 'scrooloose/nerdtree'
+
+" FZF でファイルやバッファを検索します。
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+
+" 括弧・クォート・タグで文字を囲んだり削除したりする機能を提供します。
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+
+" git 関連のプラグインです。
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+
+" .editorconfig を設定に反映できるようにします。
+Plug 'editorconfig/editorconfig-vim'
+
+call plug#end()
+
+" --------------------------------------------------------------------------------
+"
+" File
+"
+" --------------------------------------------------------------------------------
+
+" 文字コードには UTF-8 を使用しますが、他の文字コードのファイルもオープンできるようにします。
+scriptencoding utf-8
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8
+
+" 改行コードには LF を使用しますが、他の改行コードのファイルもオープンできるようにします。
+set fileformat=unix
+set fileformats=unix,dos,mac
+
+" modeline (ファイルごとのフォーマットの設定) を先頭 5 行から探します。
+set modeline
+set modelines=5
+
+" Vim が自動生成する各種のファイルを無効化します。
+set nobackup
+set noswapfile
+set viminfo=
+set noundofile
+
+" :find コマンドでカレントディレクトリ以下のファイルを検索してオープンできるようにします。
+set path=$PWD/**
+
+" ファイルタイプごとに異なるプラグインとインデント設定を読み込むようにします。
+filetype on
+filetype plugin indent on
+
+" --------------------------------------------------------------------------------
+"
+" UI
+"
+" --------------------------------------------------------------------------------
+
+" 黒背景にしてカラースキーマ molokai を適用します。
+set background=dark
+colorscheme molokai
+
+" フォントを設定します。
+set guifont=Ricty_Diminished:h11
+set guifontwide=Ricty_Diminished:h11
+
+" ウィンドウ左端に行番号を表示します。
+set number
+
+" ステータスラインを常に表示します。
+" 0: 非表示, 1: 2 つ以上ウィンドウが存在する場合に表示, 2: 表示
+set laststatus=2
+
+" ステーラスラインの内容を指定します。
+set statusline=%y\ %f\ %m%=%r%h%w(%l,%v)\ [%{&fenc}+%{&fileformat}]
+
+" 入力モード時、ステータスラインのカラーを変更します。gvim でのみ有効です。
+augroup ui_status_line_color
+    au!
+    au InsertEnter * hi StatusLine guifg=#ccdc90 guibg=#2E4340
+    au InsertLeave * hi StatusLine guifg=#455354 guibg=fg
+augroup END
+
+" 文字幅が曖昧な記号を全角文字として表示します。
+set ambiwidth=double
+
+" 100 文字の位置に縦線を表示します。
+set colorcolumn=100
+
+" 選択しているウィンドウのカーソル行を強調表示します。ただし、挿入モードは除きます。
+set cursorline
+augroup ui_cursor_line_color
+    au!
+    au WinLeave,InsertEnter * set nocursorline
+    au WinEnter,InsertLeave * set cursorline
+augroup END
+
+" ビープ音を消します。
+set belloff=all
+
+" メニューバーとツールバーを非表示にします。
+set guioptions-=m
+set guioptions-=T
+
+" コマンドラインに複数行を割り当てます。
+set cmdheight=4
+
+" --------------------------------------------------------------------------------
+"
+" Edit
+"
+" --------------------------------------------------------------------------------
+
+" 自動的にインデントします。
+set autoindent
+set smartindent
+
+" タブではなくスペースでインデントします。
+set expandtab
+
+" インデント幅はデフォルトで 4 にします。
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
+
+" 一行が 100 文字に収まるように折り返して表示します。ただし、改行コードの挿入はしません。
+set textwidth=0
+set wrap
+
+" 改行時の自動コメントアウトを無効化します。
+augroup linefeed_auto_comment_off
+    au!
+    au BufEnter * setlocal formatoptions-=ro
+augroup END
+
+" マルチバイト文字で行の連結や改行が想定通りに動作するように設定します。
+set formatoptions+=mM
+
+" シンタックスハイライトを有効にします。
+syntax enable
+
+" 本来は不可視の文字を表示します。
+set listchars=tab:>-,trail:.
+set list
+
+" 括弧を閉じるとき、対応する開き括弧に一瞬移動するのではなく強調するだけにします。
+set noshowmatch
+
+" Yank の内容をクリップボードに格納します。
+set guioptions+=a
+set clipboard+=unnamed,autoselect
+
+" --------------------------------------------------------------------------------
+"
+" Search
+"
+" --------------------------------------------------------------------------------
+
+" インクリメンタルサーチを有効にします。
+set incsearch
+
+" 原則として大文字・小文字を無視します。ただし、キーワードに大文字が含まれる場合を除きます。
+set ignorecase
+set smartcase
+
+" 検索結果から無視するファイルのリストです。
+set wildignore=*.a,*.dll,*.exe,*.gif,*.jpg,*.lib,*.o,*.obj,*.png,*.pyc,*.zip
+
+" 検索結果をハイライト表示します。
+set hlsearch
+
+" --------------------------------------------------------------------------------
+"
+" Auto Complete
+"
+" --------------------------------------------------------------------------------
+
+" 親ディレクトリを辿って tags を探します。
+set tags=.tags;
+
+" --------------------------------------------------------------------------------
+"
+" netfw
+"
+" --------------------------------------------------------------------------------
+
+" ファイルをツリー表示します。1 にすると ls -la に似た形式になります。
+let g:netrw_liststyle = 3
+
+" ヘッダを非表示にします。
+let g:netrw_banner = 0
+
+" ファイルサイズに単位をつけて表示します。g:netrw_liststyle=1 の場合に意味をもちます。
+let g:netrw_sizestyle = "H"
+
+" 更新日時のフォーマットを変更します。g:netrw_liststyle=1 の場合に意味をもちます。
+let g:netrw_timefmt = "%Y-%m-%d %H:%M:%S"
+
+" プレビューウィンドウを垂直分割で表示する
+let g:netrw_preview = 1
+
+" パスを変更します。
+let g:netrw_home=$XDG_CACHE_HOME.'/vim'
+
+" --------------------------------------------------------------------------------
+"
+" NERDTree
+"
+" --------------------------------------------------------------------------------
+
+" 隠しファイルをデフォルトで表示します。
+let g:NERDTreeShowHidden = 1
+
+" ヘルプやブックマークに関するヘッダメニューを非表示にします。
+let g:NERDTreeMinimalUI = 1
+
+" ウィンドウ幅を広げます。
+let g:NERDTreeWinSize = 47
+
+" ファイルをオープンした後はウィンドウを閉じます。
+let g:NERDTreeQuitOnOpen = 1
+
+" ブックマークファイルのパスを変更します。
+let g:NERDTreeBookmarksFile = $XDG_CACHE_HOME . '/vim/.NERDTreeBookmarks'
+
+" --------------------------------------------------------------------------------
+"
+" FZF
+"
+" --------------------------------------------------------------------------------
+
+" :Rg で隠しファイルを検索対象に含めます。
+"command! -bang -nargs=* Rg
+"  \ call fzf#vim#grep(
+"  \   'rg --column --line-number --no-heading --color=always --smart-case --hidden '
+"J  \   .shellescape(<q-args>), 1, <bang>0)
+
+" --------------------------------------------------------------------------------
+"
+" Git
+"
+" --------------------------------------------------------------------------------
+
+" 行番号の横に付与するシンボルの色を変更します。
+highlight GitGutterAdd guifg=green ctermfg=2
+highlight GitGutterChange guifg=yellow ctermfg=3
+highlight GitGutterDelete guifg=red ctermfg=3
+
+" タイピング停止から行番号横のシンボルに反映されるまでの時間を短かくします。
+set updatetime=500
+
+" --------------------------------------------------------------------------------
+"
+" Key Bindings
+"
+" --------------------------------------------------------------------------------
+
+" 挿入モードからノーマルモードに戻れるキーを追加で用意します。
+inoremap jj <ESC>
+
+" 物理行ではなくスクリーン行を基準に上下移動します。すなわち、折り返しを考慮したカーソル移動です。
+noremap j gj
+noremap k gk
+
+" バッファ移動にキーを割り当てます。
+nnoremap <silent> [b :bprevious<CR>
+nnoremap <silent> ]b :bnext<CR>
+nnoremap <silent> [B :bfirst<CR>
+nnoremap <silent> ]B :blast<CR>
+
+" Git 関連のコマンドにキーを割り当てます。
+nnoremap <silent> [h :GitGutterNextHunk<CR>
+nnoremap <silent> ]h :GitGutterPrevHunk<CR>
+nmap <silent> <C-g>a :Gwrite<CR>
+nmap <silent> <C-g>b :Gblame<CR>
+nmap <silent> <C-g>c :Gcommit<CR>
+nmap <silent> <C-g>d :Gdiff<CR>
+nmap <silent> <C-g>s :Gstatus<CR>
+nmap <silent> <C-g>u :Git reset HEAD %<CR><CR>
+nmap <silent> <C-g>ha :GitGutterStageHunk<CR>
+nmap <silent> <C-g>hu :GitGutterUndoHunk<CR>
+nmap <silent> <C-g>hp :GitGutterPreviewHunk<CR>
+
+" ハイライトを消します。
+nnoremap <ESC><ESC> :nohlsearch<CR>
+
+" 現在のファイルをプレビューします。
+nnoremap <silent> <C-p> :!open %<CR>
+
+" 定義ジャンプです。
+nnoremap <silent> gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <silent> gl :YcmCompleter GoToDeclaration<CR>
+
+" ファイラーを表示します。
+nnoremap <C-n> :NERDTreeToggle<CR>
+
+" FZF によるファイルやバッファの検索です。
+nmap <C-f>f :Files<CR>
+nmap <C-f>b :Buffers<CR>
+nmap <C-f>g :Rg<SPACE>

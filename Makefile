@@ -5,8 +5,14 @@ UNLINK := unlink
 ZSHSRC = .zshenv .config/zsh/.zshrc
 ZSHZWC = $(addsuffix .zwc,$(ZSHSRC))
 
-CANDIDATES := $(wildcard .??* .config/**/* .config/**/.??*)
-EXCLUSIONS := .config .DS_Store .editorconfig .git .gitignore
+CANDIDATES := \
+	$(wildcard .??*) \
+	$(wildcard .config/**/*) \
+	$(wildcard .config/**/.??*) \
+	.vim/vimrc \
+	$(wildcard .vim/*.vim) \
+	$(wildcard .vim/**/*.vim)
+EXCLUSIONS := .config .DS_Store .editorconfig .git .gitignore .vim
 DOTFILES := $(filter-out $(EXCLUSIONS), $(CANDIDATES))
 
 all: build
