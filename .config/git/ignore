@@ -1,0 +1,12 @@
+# Hidemaru
+*.BAK
+
+# Mac
+.DS_Store
+
+# Visual Studio Code
+.vscode/*
+
+# Windows
+.lnk
+Thumbs.db
