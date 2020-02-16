@@ -398,6 +398,12 @@ if $(has ruby); then
   export GEM_SPEC_CACHE="$XDG_CACHE_HOME/gem"
 fi
 
+if $(has tmux); then
+  # 設定ファイルとして XDG Directory Base を利用するための設定です。
+  alias tmux='tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf'
+  export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
+fi
+
 ####################################################################################################
 #
 # 拡張機能です。

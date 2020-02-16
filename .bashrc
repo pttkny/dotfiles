@@ -16,13 +16,13 @@ case $- in
 esac
 
 # XDG Base Directory 対応に関する環境変数を定義し、ディレクトリを作成します。
-export XDG_CACHE_HOME="$HOME/.cache"  
-export XDG_CONFIG_HOME="$HOME/.config"  
-export XDG_DATA_HOME="$HOME/.local/share"  
-export XDG_RUNTIME_DIR="$HOME/.xdg"  
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_RUNTIME_DIR="$HOME/.xdg"
 export BCACHEDIR="$XDG_CACHE_HOME/bash"
-export BDATADIR="$XDG_DATA_HOME/bash"  
-export BDOTDIR="$XDG_CONFIG_HOME/bash"  
+export BDATADIR="$XDG_DATA_HOME/bash"
+export BDOTDIR="$XDG_CONFIG_HOME/bash"
 mkdir -p $BCACHEDIR
 mkdir -p $BDATADIR
 mkdir -p $BDOTDIR
@@ -93,7 +93,7 @@ function char() {
 
 # 左端プロンプトを以下の書式に設定します。
 # [user@host: /path/to/dir]
-# % 
+# %
 export PS1='
 \[\e[1;36m\][\u@\h: \w]\[\e[m\]
 % '
@@ -246,6 +246,12 @@ fi
 if $(has ruby); then
   export GEM_HOME="$XDG_DATA_HOME/gem"
   export GEM_SPEC_CACHE="$XDG_CACHE_HOME/gem"
+fi
+
+if $(has tmux); then
+  # 設定ファイルとして XDG Directory Base を利用するための設定です。
+  alias tmux='tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf'
+  export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
 fi
 
 ####################################################################################################
