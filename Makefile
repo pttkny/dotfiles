@@ -2,9 +2,19 @@ LN := ln -fnsv
 MKDIR := mkdir -p
 UNLINK := unlink
 
+ZSHSRC = .zshenv .config/zsh/.zshrc
+ZSHZWC = $(addsuffix .zwc,$(ZSHSRC))
+
 CANDIDATES := $(wildcard .??* .config/**/* .config/**/.??*)
 EXCLUSIONS := .config .DS_Store .editorconfig .git .gitignore
 DOTFILES := $(filter-out $(EXCLUSIONS), $(CANDIDATES))
+
+all: build
+
+build: $(ZSHZWC)
+
+clean:
+	$(RM) $(ZSHZWC)
 
 install:
 	@$(foreach file, $(DOTFILES), $(MKDIR) $(dir $(HOME)/$(file));)
@@ -16,4 +26,7 @@ uninstall:
 list:
 	@$(foreach file, $(DOTFILES), echo $(file);)
 
-.PHONY: install uninstall list
+%.zwc: %
+	zsh -c "zcompile $<"
+
+.PHONY: build clean install uninstall list
