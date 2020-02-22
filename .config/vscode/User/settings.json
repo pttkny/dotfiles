@@ -1,0 +1,329 @@
+//
+// この設定ファイルは以下の拡張機能に依存しています。自身でインストールしてください。
+//
+// - dbaeumer.vscode-eslint
+// - esbenp.prettier-vscode
+// - ms-azuretools.vscode-docker
+// - ms-vscode.go
+// - toba.vsfire
+// - vscode-icons-team.vscode-icons
+// - vscodevim.vim
+// - xaver.clang-format
+//
+{
+  //================================================================================
+  //
+  // テキスト編集に関する設定
+  //
+  //================================================================================
+
+  // デフォルトではインデントに 2 文字の半角空白を使用します。
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+
+  // 1 行を 100 文字に設定し、100 文字を越えた場合には折り返して表示します。
+  "editor.rulers": [ 100 ],
+  "editor.wordWrap": "wordWrapColumn",
+  "editor.wordWrapColumn": 100,
+
+  // ファイルの末尾には改行を 1 つ付与します。
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+
+  // 行末の空白は削除します。
+  "files.trimTrailingWhitespace": true,
+
+  // コード整形はデフォルトで無効に設定し、各言語ごとに個別に有効化します。
+  "editor.formatOnPaste": false,
+  "editor.formatOnSave": false,
+  "editor.formatOnType": false,
+
+  //================================================================================
+  //
+  // GUI に関する設定
+  //
+  //================================================================================
+
+  // 視認性の高い等幅フォントを使用します。別途フォントのインストールが必要です。
+  "editor.fontFamily": "MyricaM M, Ricty, Ricty Diminished, VL Gothic, Osaka-Mono, MS Gothic",
+  "editor.fontSize": 12,
+
+  // デフォルトの Seti ではフォルダアイコンが表示されないため、アイコンテーマを変更します。
+  "workbench.iconTheme": "vscode-icons",
+
+  // 現在行を行番号ごと強調表示します。
+  "editor.renderLineHighlight": "all",
+
+  // ミニマップ機能は使用しません。
+  "editor.minimap.enabled": false,
+
+  // 高解像度のディスプレイでは GUI が大きく表示されすぎるので調整します。
+  "window.zoomLevel": -1,
+
+  //================================================================================
+  //
+  // キーバインディングに関する設定
+  //
+  //================================================================================
+
+  // 自動的にインデントします。
+  "vim.autoindent": true,
+
+  // 検索結果にマッチする全てのテキストをハイライトします。
+  "vim.hlsearch": true,
+
+  // 挿入モードの設定です。
+  "vim.insertModeKeyBindingsNonRecursive": [
+    // jj で挿入モードから抜けられるようにします。
+    {
+      "before": [
+        "j",
+        "j"
+      ],
+      "after": [
+        "<Esc>"
+      ]
+    }
+  ],
+
+  // vim-surround 相当の機能を利用できるようにします。
+  "vim.surround": true,
+
+  // クリップボードを unnamed register として使用します。
+  "vim.useSystemClipboard": true,
+
+  // ノーマルモードの設定です。
+  "vim.leader": "<C-f>",
+  "vim.normalModeKeyBindingsNonRecursive": [
+    // 行の折り返しを考慮してカーソルを移動します。
+    {
+      "before": [
+        "j"
+      ],
+      "after": [
+        "g",
+        "j"
+      ]
+    },
+    {
+      "before": [
+        "k"
+      ],
+      "after": [
+        "g",
+        "k"
+      ]
+    },
+    // C-n でエクスプローラに移動します。
+    {
+      "before": [
+        "<C-n>"
+      ],
+      "commands": [
+        "workbench.view.explorer"
+      ]
+    },
+    // C-f f でファイルの検索を開始します。
+    {
+      "before": [
+        "<leader>",
+        "f"
+      ],
+      "commands": [
+        "workbench.action.quickOpen"
+      ]
+    },
+    // C-f g でファイル内容の検索を開始します。
+    {
+      "before": [
+        "<leader>",
+        "g"
+      ],
+      "commands": [
+        "workbench.view.search"
+      ]
+    },
+    // Esc でハイライト表示を終了します。
+    {
+      "before": [
+        "<Esc>"
+      ],
+      "commands": [
+        ":nohl"
+      ]
+    },
+  ],
+  "vim.useCtrlKeys": true,
+
+  //================================================================================
+  //
+  // ファイルに関する設定
+  //
+  //================================================================================
+
+  // ファイル名とファイルタイプの紐付けをカスタマイズします。
+  "files.associations": {
+    "-clang-format": "yaml",
+    ".clang-format": "yaml"
+  },
+
+  // 編集する可能性が低いファイルは非表示にします。
+  "files.exclude": {
+    "**/node_modules": true
+  },
+
+  //================================================================================
+  //
+  // ファイルタイプに応じた設定
+  //
+  //================================================================================
+
+  //
+  // C/C++
+  //
+
+  "[c]": {
+    "editor.formatOnSave": true,
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4
+  },
+  "[cpp]": {
+    "editor.formatOnSave": true,
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4
+  },
+
+  //
+  // Golang
+  //
+
+  "[go]": {
+    "editor.formatOnSave": true,
+    "editor.insertSpaces": false,
+    "editor.tabSize": 4
+  },
+
+  //
+  // HTML
+  //
+
+  "html.mirrorCursorOnMatchingTag": false,
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.insertSpaces": false,
+    "editor.tabSize": 4
+  },
+
+  //
+  // CSS/SCSS
+  //
+
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.insertSpaces": false,
+    "editor.tabSize": 4
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.insertSpaces": false,
+    "editor.tabSize": 4
+  },
+
+  //
+  // Json
+  //
+
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2
+  },
+
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2
+  },
+
+  //
+  // YAML
+  //
+
+  "[yaml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2
+  },
+
+  //
+  // JavaScript
+  //
+
+  "[javascript]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    }
+  },
+  "[javascriptreact]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    }
+  },
+
+  //
+  // TypeScript
+  //
+  "[typescript]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    }
+  },
+  "[typescriptreact]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    }
+  },
+
+  //
+  // Markdown
+  //
+
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2
+  },
+
+  //
+  // Python
+  //
+
+  "[python]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4
+  },
+
+  //
+  // Ruby
+  //
+
+  "[ruby]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2
+  }
+}

@@ -1,2 +1,7 @@
 # make で生成される成果物は除外します。
 *.zwc
+
+# vscode 関連のファイルです。
+/.config/vscode/User/*
+!/.config/vscode/User/keybindings.json
+!/.config/vscode/User/settings.json

@@ -312,6 +312,12 @@ if [ "$OS" = "osx" ]; then
   export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:$MANPATH
 fi
 
+if $(has code); then
+  alias code='code \
+    --user-data-dir "$XDG_CONFIG_HOME/vscode" \
+    --extensions-dir "$XDG_DATA_HOME/vscode/extensions"'
+fi
+
 if $(has direnv); then
   # direnv による環境変数の設定を有効にするため、フックを設定します。
   eval "$(direnv hook zsh)"
