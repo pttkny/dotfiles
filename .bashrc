@@ -168,6 +168,11 @@ if $(has code); then
     --extensions-dir "$XDG_DATA_HOME/vscode/extensions"'
 fi
 
+if $(has curl); then
+  # 現在地の天気を表示します。
+  alias wttr='curl -s "https://wttr.in?format=%l:+%C+(%t+%p)"'
+fi
+
 if $(has direnv); then
   # direnv による環境変数の設定を有効にするため、フックを設定します。
   eval "$(direnv hook bash)"
