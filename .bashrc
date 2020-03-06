@@ -196,10 +196,14 @@ fi
 
 if $(has fzf); then
   # ** を補完すると fzf でファイルを検索できるようにします。
-  source '/usr/local/opt/fzf/shell/completion.bash' 2> /dev/null
-
-  # C-r で history から fzf を使ってコマンドを検索できるようにします。
-  source '/usr/local/opt/fzf/shell/key-bindings.bash'
+  # また、C-r で history から fzf を使ってコマンドを検索できるようにします。
+  if [ "$OS" = "osx" ]; then
+    source '/usr/local/opt/fzf/shell/completion.bash' 2> /dev/null
+    source '/usr/local/opt/fzf/shell/key-bindings.bash'
+  elif [ "$OS" = "linux" ]; then
+    source '/usr/share/fzf/completion.bash' 2> /dev/null
+    source '/usr/share/fzf/key-bindings.bash'
+  fi
 
   # fzf を使って選択したプロセスを終了します。
   alias fkill="\ps ax -o user,pid,pcpu,pmem,command | fzf -m | awk '{ print \$2 }' | xargs kill -9"
