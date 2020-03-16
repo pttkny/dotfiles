@@ -4,6 +4,7 @@
 // - dbaeumer.vscode-eslint
 // - esbenp.prettier-vscode
 // - ms-azuretools.vscode-docker
+// - ms-python.python
 // - ms-vscode.go
 // - toba.vsfire
 // - vscode-icons-team.vscode-icons
@@ -324,9 +325,16 @@
   //
 
   "[python]": {
+    "editor.formatOnSave": true,
     "editor.insertSpaces": true,
     "editor.tabSize": 4
   },
+
+  "python.formatting.provider": "black",
+  "python.linting.enabled": true,
+  "python.linting.flake8Enabled": true,
+  "python.linting.lintOnSave": true,
+  "python.linting.pylintEnabled": false,
 
   //
   // Ruby
