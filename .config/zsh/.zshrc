@@ -298,6 +298,9 @@ alias mv="mv -i"
 # ps コマンドのエイリアスです。
 alias ps="ps ax -o user,pid,pcpu,pmem,command"
 
+# zsh をリロードするエイリアスです。
+alias reload='exec $SHELL -l'
+
 # rm コマンドのエイリアスです。
 #   -i: 削除前に確認メッセージを表示します。
 alias rm="rm -i"
