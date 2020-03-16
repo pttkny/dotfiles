@@ -126,9 +126,12 @@ colors
 #
 ####################################################################################################
 
+# .config/zsh/completion 以下に自動補完の定義ファイルを置きます。
+fpath=($ZDOTDIR/completion $fpath)
+
 # コマンド補完を有効にします。
 autoload -Uz compinit
-compinit -d "$ZCACHEDIR/.zcompdump"
+compinit -i -d "$ZCACHEDIR/.zcompdump"
 
 # コマンド補完では大文字・小文字は区別しません。
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
