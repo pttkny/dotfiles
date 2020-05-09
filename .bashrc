@@ -178,6 +178,11 @@ if $(has direnv); then
   eval "$(direnv hook bash)"
 fi
 
+if $(has docker); then
+  alias dk='docker'
+  alias dkc='docker-compose'
+fi
+
 if $(has fd); then
   # fd でファイルを検索するエイリアスです。
   #   -L, --follow: シンボリックリンクを辿って検索します。
