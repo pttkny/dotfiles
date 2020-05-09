@@ -60,7 +60,8 @@
   "editor.fontSize": 12,
 
   // デフォルトの Seti ではフォルダアイコンが表示されないため、アイコンテーマを変更します。
-  "workbench.iconTheme": "vscode-icons",
+  "workbench.iconTheme": "material-icon-theme",
+  "material-icon-theme.folders.theme": "classic",
 
   // 現在行を行番号ごと強調表示します。
   "editor.renderLineHighlight": "all",
