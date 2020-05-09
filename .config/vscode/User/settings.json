@@ -175,7 +175,8 @@
   // ファイル名とファイルタイプの紐付けをカスタマイズします。
   "files.associations": {
     "-clang-format": "yaml",
-    ".clang-format": "yaml"
+    ".clang-format": "yaml",
+    ".prettierrc": "yaml"
   },
 
   // 編集する可能性が低いファイルは非表示にします。
@@ -221,8 +222,8 @@
   "html.mirrorCursorOnMatchingTag": false,
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true,
-    "editor.insertSpaces": false,
+    "editor.formatOnSave": false,
+    "editor.insertSpaces": true,
     "editor.tabSize": 4
   },
 
@@ -233,13 +234,13 @@
   "[css]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
-    "editor.insertSpaces": false,
+    "editor.insertSpaces": true,
     "editor.tabSize": 4
   },
   "[scss]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
-    "editor.insertSpaces": false,
+    "editor.insertSpaces": true,
     "editor.tabSize": 4
   },
 
