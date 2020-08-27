@@ -285,7 +285,7 @@ alias less="less -R"
 #   -F, --classify: ファイル名の末尾にファイルの種類を表す記号 (*/=>@|) を付与します。
 #   -h, --human-readable: ファイルサイズを読みやすい形式で出力します。
 #   -l: 詳細情報を表示します。
-alias ls='ls -AFhl --color=auto'
+alias ls='ls -AFhl --color=auto --time-style="+%Y-%m-%d %H:%M"'
 
 # mkdir コマンドのエイリアスです。
 #   -p, --parents: 中間ディレクトリを自動的に作成します。
