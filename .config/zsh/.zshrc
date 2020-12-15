@@ -422,6 +422,7 @@ fi
 if $(has ruby); then
   export GEM_HOME="$XDG_DATA_HOME/gem"
   export GEM_SPEC_CACHE="$XDG_CACHE_HOME/gem"
+  export PATH="$GEM_HOME/bin:$PATH"
 fi
 
 if $(has tmux); then
